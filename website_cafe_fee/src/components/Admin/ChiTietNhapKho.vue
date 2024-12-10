@@ -12,19 +12,19 @@
                     <table class="table table-bordered table-hover ">
                         <thead class="text-center align-middle">
                             <tr>
-                                    <th colspan="100%">
-                                        <div class="input-group mt-3 w-100">
-                                            <input v-on:keyup.enter="timKiem()" v-model="search.noi_dung" type="text"
-                                                class="form-control search-control border border-1 border-secondary"
-                                                placeholder="Search...">
-                                            <span class="position-absolute top-50 search-show translate-middle-y"
-                                                style="left: 15px;"><i class="bx bx-search"></i></span>
-                                            <button v-on:click="timKiem()" class="btn btn-outline-secondary"
-                                                type="button">Tìm
-                                                Kiếm</button>
-                                        </div>
-                                    </th>
-                                </tr>
+                                <th colspan="100%">
+                                    <div class="input-group mt-3 w-100">
+                                        <input v-on:keyup.enter="timKiem()" v-model="search.noi_dung" type="text"
+                                            class="form-control search-control border border-1 border-secondary"
+                                            placeholder="Search...">
+                                        <span class="position-absolute top-50 search-show translate-middle-y"
+                                            style="left: 15px;"><i class="bx bx-search"></i></span>
+                                        <button v-on:click="timKiem()" class="btn btn-outline-secondary"
+                                            type="button">Tìm
+                                            Kiếm</button>
+                                    </div>
+                                </th>
+                            </tr>
                             <tr>
                                 <th class="text-center">#</th>
                                 <th class="text-center">Nhập Kho</th>
@@ -53,12 +53,12 @@
                                     <button v-else class="btn btn-warning">Tạm Dừng</button>
                                 </td>
                                 <td class="align-middle text-center">
-                                        <button v-on:click="Object.assign(edit, v)" class="btn btn-primary me-2"
-                                            data-bs-toggle="modal" data-bs-target="#capnhatDM">Cập
-                                            nhật</button>
-                                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delModal"
-                                            v-on:click="Object.assign(del, v)">Xóa</button>
-                                    </td>
+                                    <button v-on:click="Object.assign(edit, v)" class="btn btn-primary me-2"
+                                        data-bs-toggle="modal" data-bs-target="#capnhatDM">Cập
+                                        nhật</button>
+                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delModal"
+                                        v-on:click="Object.assign(del, v)">Xóa</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -93,7 +93,7 @@
                         <label class="form-lable">Tình Trạng</label>
                         <select v-model="create.tinh_trang" class="form-control">
                             <option value="0">Tạm Dừng</option>
-                            <option value="1">Hoạt Động</option>
+                            <option value="1">Hoạt Động hiêu ngu</option>
                         </select>
                     </div>
                 </div>
@@ -106,82 +106,81 @@
     </div>
     <!-- modal cập nhật -->
     <div class="modal fade" id="capnhatDM" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Cập nhật Nhân Viên</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Cập nhật Nhân Viên</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-2">
+                        <label class="form-lable">Nhập Kho</label>
+                        <input v-model="edit.nhap_kho" type="text" class="form-control">
                     </div>
-                    <div class="modal-body">
-                        <div class="mb-2">
-                            <label class="form-lable">Nhập Kho</label>
-                            <input v-model="edit.nhap_kho" type="text" class="form-control">
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-lable">Sản Phẩm</label>
-                            <input v-model="edit.san_pham" type="text" class="form-control">
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-lable">Số Lượng</label>
-                            <input v-model="edit.so_luong" type="text" class="form-control">
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-lable">Loại</label>
-                            <input v-model="edit.loai" type="text" class="form-control">
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-lable">Đơn Gía</label>
-                            <input v-model="edit.don_gia" type="text" class="form-control">
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-lable">Thanh Toán</label>
-                            <input v-model="edit.thanh_toan" type="text" class="form-control">
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-lable">Ghi Chú</label>
-                            <input v-model="edit.ghi_chu" type="text" class="form-control">
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-lable">Tình Trạng</label>
-                            <select v-model="edit.tinh_trang" class="form-control">
-                                <option value="0">Tạm Dừng</option>
-                                <option value="1">Hoạt Động</option>
-                            </select>
-                        </div>
+                    <div class="mb-2">
+                        <label class="form-lable">Sản Phẩm</label>
+                        <input v-model="edit.san_pham" type="text" class="form-control">
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                        <button v-on:click="capNhat()" type="button" class="btn btn-primary"
-                            data-bs-dismiss="modal">Cập
-                            nhật</button>
+                    <div class="mb-2">
+                        <label class="form-lable">Số Lượng</label>
+                        <input v-model="edit.so_luong" type="text" class="form-control">
                     </div>
+                    <div class="mb-2">
+                        <label class="form-lable">Loại</label>
+                        <input v-model="edit.loai" type="text" class="form-control">
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-lable">Đơn Gía</label>
+                        <input v-model="edit.don_gia" type="text" class="form-control">
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-lable">Thanh Toán</label>
+                        <input v-model="edit.thanh_toan" type="text" class="form-control">
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-lable">Ghi Chú</label>
+                        <input v-model="edit.ghi_chu" type="text" class="form-control">
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-lable">Tình Trạng</label>
+                        <select v-model="edit.tinh_trang" class="form-control">
+                            <option value="0">Tạm Dừng</option>
+                            <option value="1">Hoạt Động</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button v-on:click="capNhat()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Cập
+                        nhật</button>
                 </div>
             </div>
         </div>
+    </div>
     <!-- modal xóa -->
     <div class="modal fade" id="delModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa Kho</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa Kho</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger" role="alert">
+                        Bạn có chắc muốn xóa Kho <b class="text-danger">{{ del.nhap_kho
+                            }}</b>
+                        này
+                        không?
                     </div>
-                    <div class="modal-body">
-                        <div class="alert alert-danger" role="alert">
-                            Bạn có chắc muốn xóa Kho <b class="text-danger">{{ del.nhap_kho
-                                }}</b>
-                            này
-                            không?
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" v-on:click="xoa()">Xác
-                            nhận</button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" v-on:click="xoa()">Xác
+                        nhận</button>
                 </div>
             </div>
         </div>
+    </div>
 </template>
 <script>
 import axios from 'axios';
@@ -231,7 +230,7 @@ export default {
                     });
                 })
         },
-      
+
         capNhat() {
             axios
                 .post('http://127.0.0.1:8000/api/admin/chitiet-nhapkho/update', this.edit)
