@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ChiTietNhapKhoController;
+use App\Http\Controllers\DichVuController;
 use App\Http\Controllers\KhachHangController;
 use App\Http\Controllers\KhoController;
 use App\Http\Controllers\LoaiSanPhamController;
@@ -44,6 +45,7 @@ Route::get('/admin/san-pham/dataopen/{id}', [SanPhamController::class, 'dataopen
 Route::get('/admin/san-pham/dataopen', [SanPhamController::class, 'dataList']);
 Route::post('/admin/san-pham/tim-kiem', [SanPhamController::class, 'tim']);
 
+
 Route::get('/admin/nha-cung-cap/data', [NhaCungCapController::class, 'getData']);
 Route::post('/admin/nha-cung-cap/create', [NhaCungCapController::class, 'store']);
 Route::post('/admin/nha-cung-cap/update', [NhaCungCapController::class, 'update']);
@@ -67,6 +69,9 @@ Route::get('/admin/phan-quyen/data', [PhanquyenController::class, 'getData']);
 Route::post('/admin/phan-quyen/create', [PhanquyenController::class, 'store']);
 Route::post('/admin/phan-quyen/update', [PhanquyenController::class, 'update']);
 Route::post('/admin/phan-quyen/delete', [PhanquyenController::class, 'delete']);
+
+
+Route::post('/admin/dich-vu/getdata', [DichVuController::class, 'getdatatheoloaisp']);
 
 
 

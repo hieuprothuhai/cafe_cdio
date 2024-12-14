@@ -7,9 +7,21 @@ use Illuminate\Http\Request;
 
 class KhoController extends Controller
 {
+    // public function getdata()
+    // {
+    //     $data   = thanh_vien::leftjoin('chuc_vus', 'chuc_vus.id', 'thanh_viens.id_chuc_vu')
+    //         ->select('thanh_viens.*', 'chuc_vus.ten_chuc_vu')
+    //         ->get(); // get là ra 1 danh sách
+    //     return response()->json([
+    //         'data'   =>   $data
+    //     ]);
+    // }
     public function getData()
     {
-        $data = Kho::get();
+        $data = Kho::leftjoin('nha_cung_caps', 'nha_cung_caps.id', 'khos.nha_cung_cap')
+            ->leftjoin('nhan_viens', 'nhan_viens.id', 'khos.nhan_vien')
+            ->select('khos.*', 'nha_cung_caps.ten_nha_cung_cap', 'nhan_viens.ho_va_ten')
+            ->get();
 
         return response()->json([
             'data' => $data

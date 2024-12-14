@@ -23,9 +23,13 @@ class SanPhamController extends Controller
             'message' => 'Bạn thêm mới  ' . $request->ten_san_pham . '  Thành Công'
         ]);
     }
+    
     public function getData()
     {
-        $data = SanPham::get();
+        $data = SanPham::leftjoin('loaisanphams', 'loaisanphams.id', 'san_phams.id_san_pham')
+            ->select('san_phams.*', 'loaisanphams.ten_loai')
+            ->get();
+
         return response()->json([
             'data' => $data
         ]);
@@ -60,7 +64,7 @@ class SanPhamController extends Controller
     {
         $sanpham = SanPham::where('id', $request->id)->first();
 
-        if($request->tinh_trang == 0) {
+        if ($request->tinh_trang == 0) {
             $sanpham->tinh_trang = 1;
             $sanpham->save();
         } else {
@@ -91,8 +95,8 @@ class SanPhamController extends Controller
         $noi_dung = '%' . $request->noi_dung . '%';
 
         $data = SanPham::where('ten_san_pham', 'like', $noi_dung)
-                        ->orwhere('id_san_pham', 'like', $noi_dung)
-                        ->get();
+            ->orwhere('id_san_pham', 'like', $noi_dung)
+            ->get();
 
         return response()->json([
             'data' => $data
