@@ -51,19 +51,23 @@ Route::post('/admin/nha-cung-cap/create', [NhaCungCapController::class, 'store']
 Route::post('/admin/nha-cung-cap/update', [NhaCungCapController::class, 'update']);
 Route::post('/admin/nha-cung-cap/delete', [NhaCungCapController::class, 'delete']);
 Route::post('/admin/nha-cung-cap/tim-kiem', [NhaCungCapController::class, 'search']);
-// Route::post('/admin/nha-cung-cap/doi-trang-thai', [NhaCungCapController::class, 'doitrangthai']);
+Route::post('/admin/nha-cung-cap/doi-trang-thai', [NhaCungCapController::class, 'doitrangthai']);
 
 Route::get('/admin/chitiet-nhapkho/data', [ChiTietNhapKhoController::class, 'getData']);
 Route::post('/admin/chitiet-nhapkho/create', [ChiTietNhapKhoController::class, 'store']);
 Route::post('/admin/chitiet-nhapkho/update', [ChiTietNhapKhoController::class, 'update']);
 Route::post('/admin/chitiet-nhapkho/delete', [ChiTietNhapKhoController::class, 'delete']);
 Route::post('/admin/chitiet-nhapkho/tim-kiem', [ChiTietNhapKhoController::class, 'search']);
+Route::post('/admin/chitiet-nhapkho/doi-trang-thai', [ChiTietNhapKhoController::class, 'doitrangthai']);
+
 
 Route::get('/admin/kho/data', [KhoController::class, 'getData']);
 Route::post('/admin/kho/create', [KhoController::class, 'store']);
 Route::post('/admin/kho/update', [KhoController::class, 'update']);
 Route::post('/admin/kho/delete', [KhoController::class, 'delete']);
 Route::post('/admin/kho/tim-kiem', [KhoController::class, 'search']);
+Route::post('/admin/kho/doi-trang-thai', [KhoController::class, 'doitrangthai']);
+
 
 Route::get('/admin/phan-quyen/data', [PhanquyenController::class, 'getData']);
 Route::post('/admin/phan-quyen/create', [PhanquyenController::class, 'store']);

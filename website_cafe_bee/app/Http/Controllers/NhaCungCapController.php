@@ -65,20 +65,20 @@ class NhaCungCapController extends Controller
             'data' => $data
         ]);
     }
-    // public function doitrangthai(Request $request)
-    // {
-    //     $cungcap = NhaCungCap::where('id', $request->id)->first();
+    public function doitrangthai(Request $request)
+    {
+        $cungcap = NhaCungCap::where('id', $request->id)->first();
 
-    //     if($request->tinh_trang == 1) {
-    //         $cungcap->tinh_trang = 0;
-    //         $cungcap->save();
-    //     } else {
-    //         $cungcap->tinh_trang = 1;
-    //         $cungcap->save();
-    //     }
-    //     return response()->json([
-    //         'status'    =>  true,
-    //         'message'   =>  'Bạn đã cập nhật loại khóa ' . $request->ten_nha_cung_cap . ' thành công'
-    //     ]);
-    // }
+        if($request->tinh_trang == 1) {
+            $cungcap->tinh_trang = 0;
+            $cungcap->save();
+        } else {
+            $cungcap->tinh_trang = 1;
+            $cungcap->save();
+        }
+        return response()->json([
+            'status'    =>  true,
+            'message'   =>  'Bạn đã cập nhật loại khóa ' . $request->ten_nha_cung_cap . ' thành công'
+        ]);
+    }
 }

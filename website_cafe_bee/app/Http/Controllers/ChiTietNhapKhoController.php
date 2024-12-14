@@ -71,4 +71,20 @@ class ChiTietNhapKhoController extends Controller
             'data' => $data
         ]);
     }
+    public function doitrangthai(Request $request)
+    {
+        $nhapkho = ChiTietNhapKho::where('id', $request->id)->first();
+
+        if($request->tinh_trang == 1) {
+            $nhapkho->tinh_trang = 0;
+            $nhapkho->save();
+        } else {
+            $nhapkho->tinh_trang = 1;
+            $nhapkho->save();
+        }
+        return response()->json([
+            'status'    =>  true,
+            'message'   =>  'Bạn đã cập nhật kho ' . $request->nhap_kho . ' thành công'
+        ]);
+    }
 }

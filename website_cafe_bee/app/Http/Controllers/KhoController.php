@@ -79,4 +79,20 @@ class KhoController extends Controller
             'data' => $data
         ]);
     }
+    public function doitrangthai(Request $request)
+    {
+        $nha_cung_cap = Kho::where('id', $request->id)->first();
+
+        if($request->tinh_trang == 1) {
+            $nha_cung_cap->tinh_trang = 0;
+            $nha_cung_cap->save();
+        } else {
+            $nha_cung_cap->tinh_trang = 1;
+            $nha_cung_cap->save();
+        }
+        return response()->json([
+            'status'    =>  true,
+            'message'   =>  'Bạn đã cập nhật Nhà cung cấp ' . $request->nha_cung_cap . ' thành công'
+        ]);
+    }
 }
