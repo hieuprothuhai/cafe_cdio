@@ -79,9 +79,14 @@
                                     <td class="text-center align-middle">{{ value.tong_tien }}</td>
                                     <td class="text-center align-middle">{{ value.ghi_chu }}</td>
                                     <td class="text-center align-middle">
-                                        <button v-if="value.tinh_trang == 1" class="btn btn-success me-2">Hoạt
-                                            Động</button>
-                                        <button v-else class="btn btn-warning">Tạm Dừng</button>
+                                        <button v-on:click="doiTrangThai(value)" v-if="value.tinh_trang ==1"
+                                                class="btn btn-success" style="width: 100px">
+                                                Hoạt Động
+                                            </button>
+                                            <button v-on:click="doiTrangThai(value)" v-else class="btn btn-warning"
+                                                style="width: 100px">
+                                                Tạm Dừng
+                                            </button>
                                     </td>
                                     <td class="text-center align-middle">
                                         <button v-on:click="Object.assign(edit, value)" type="button"
@@ -276,6 +281,22 @@ export default {
                 .post("http://127.0.0.1:8000/api/admin/kho/tim-kiem", this.search)
                 .then((res) => {
                     this.list = res.data.data
+                })
+                .catch((res) => {
+                    const list = Object.values(res.response.data.errors);
+                    list.forEach((v, i) => {
+                        this.$toast.error(v[0]);
+                    });
+                })
+        },
+        doiTrangThai(value) {
+            axios
+                .post("http://127.0.0.1:8000/api/admin/kho/doi-trang-thai", value)
+                .then((res) => {
+                    if (res.data.status) {
+                        this.loadData();
+                        this.$toast.success(res.data.message);
+                    }
                 })
                 .catch((res) => {
                     const list = Object.values(res.response.data.errors);

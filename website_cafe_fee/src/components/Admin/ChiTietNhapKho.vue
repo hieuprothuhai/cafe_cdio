@@ -49,8 +49,14 @@
                                 <td class="align-middle text-center">{{ v.thanh_toan }}</td>
                                 <td class="align-middle text-center">{{ v.ghi_chu }}</td>
                                 <td class="align-middle text-center">
-                                    <button v-if="v.tinh_trang == 1" class="btn btn-success me-2">Hoạt Động</button>
-                                    <button v-else class="btn btn-warning">Tạm Dừng</button>
+                                    <button v-on:click="doiTrangThai(v)" v-if="v.tinh_trang ==1"
+                                                class="btn btn-success" style="width: 100px">
+                                                Hoạt Động
+                                            </button>
+                                            <button v-on:click="doiTrangThai(v)" v-else class="btn btn-warning"
+                                                style="width: 100px">
+                                                Tạm Dừng
+                                            </button>
                                 </td>
                                 <td class="align-middle text-center">
                                     <button v-on:click="Object.assign(edit, v)" class="btn btn-primary me-2"
@@ -272,6 +278,22 @@ export default {
                     if (res.data.status) {
                         this.$toast.success(res.data.message);
                         this.loadData();
+                    }
+                })
+                .catch((res) => {
+                    const list = Object.values(res.response.data.errors);
+                    list.forEach((v, i) => {
+                        this.$toast.error(v[0]);
+                    });
+                })
+        },
+        doiTrangThai(v) {
+            axios
+                .post("http://127.0.0.1:8000/api/admin/chitiet-nhapkho/doi-trang-thai", v)
+                .then((res) => {
+                    if (res.data.status) {
+                        this.loadData();
+                        this.$toast.success(res.data.message);
                     }
                 })
                 .catch((res) => {
