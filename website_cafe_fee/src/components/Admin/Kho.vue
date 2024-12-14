@@ -7,9 +7,18 @@
                 </div>
                 <div class="card-body">
                     <label>Nhà Cung Cấp</label>
-                    <input v-model="create.nha_cung_cap" class="form-control mb-2" type="text">
+                    <select v-model="create.nha_cung_cap" class="form-control">
+                        <template v-for="(v, k) in list_ncc" :key="k">
+                            <option v-bind:value="v.id">{{ v.ten_nha_cung_cap }}</option>
+                        </template>
+                    </select>
                     <label>Nhân Viên</label>
-                    <input v-model="create.nhan_vien" class="form-control mb-2" type="text">
+                    <select v-model="create.nhan_vien" class="form-control">
+                        <template v-for="(v, k) in list_nhan_vien" :key="k">
+                            <option v-bind:value="v.id">{{ v.ho_va_ten }}</option>
+                        </template>
+                    </select>
+
                     <label>Mã Nhập Kho</label>
                     <input v-model="create.ma_nhap_kho" class="form-control mb-2" type="text">
                     <label>Tổng Tiền</label>
@@ -64,8 +73,8 @@
                             <tbody>
                                 <tr v-for="(value, k) in list" :key="k">
                                     <td class="text-center align-middle">{{ k + 1 }}</td>
-                                    <td class="text-center align-middle">{{ value.nha_cung_cap }}</td>
-                                    <td class="text-center align-middle">{{ value.nhan_vien }}</td>
+                                    <td class="text-center align-middle">{{ value.ten_nha_cung_cap }}</td>
+                                    <td class="text-center align-middle">{{ value.ho_va_ten }}</td>
                                     <td class="text-center align-middle">{{ value.ma_nhap_kho }}</td>
                                     <td class="text-center align-middle">{{ value.tong_tien }}</td>
                                     <td class="text-center align-middle">{{ value.ghi_chu }}</td>
@@ -173,14 +182,9 @@ export default {
     data() {
         return {
             list: [],
-            create: {
-                'nha_cung_cap': '',
-                'nhan_vien': '',
-                'ma_nhap_kho': '',
-                'tong_tien': '',
-                'ghi_chu': '',
-                'tinh_trang': '',
-            },
+            list_ncc: [],
+            list_nhan_vien: [],
+            create: {},
             edit: {},
             del: {
                 'nha_cung_cap': '',
@@ -190,6 +194,8 @@ export default {
     },
     mounted() {
         this.loadData();
+        this.loadDatanhacungcap();
+        this.loadDatanhanvien();
     },
     methods: {
         loadData() {
@@ -199,13 +205,30 @@ export default {
                     this.list = res.data.data;
                 })
         },
+        loadDatanhacungcap() {
+            axios
+                .get('http://127.0.0.1:8000/api/admin/nha-cung-cap/data')
+                .then((res) => {
+                    this.list_ncc = res.data.data;
+                })
+        },
+        loadDatanhanvien() {
+            axios
+                .get('http://127.0.0.1:8000/api/admin/nhan-vien/data')
+                .then((res) => {
+                    this.list_nhan_vien = res.data.data;
+                })
+        },
         themMoi() {
             axios
                 .post('http://127.0.0.1:8000/api/admin/kho/create', this.create)
                 .then((res) => {
                     if (res.data.status) {
                         this.$toast.success(res.data.message);
+                        this.create = {}
                         this.loadData();
+
+
                     }
                 })
                 .catch((res) => {

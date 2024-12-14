@@ -1,15 +1,16 @@
 <template>
-   <div class="row">
-    <div class="col-lg-4 col-md-12">
+    <div class="row">
+        <div class="col-lg-4 col-md-12">
             <div class="card mt-2">
                 <div class="card-header mt-2">
                     <h5>Thêm Mới Sản Phẩm</h5>
                 </div>
                 <div class="card-body">
-                    <label class="mb-2 mt-2">Chọn Loại Sản Phẩm</label>                
+                    <label class="mb-2 mt-2">Chọn Loại Sản Phẩm</label>
                     <select v-model="create.id_san_pham" class="form-control">
-                        <option value="1">Bánh</option>
-                        <option value="0">Nước uống</option>
+                        <template v-for="(v, k) in list_loaisp" :key="k">
+                            <option v-bind:value="v.id">{{ v.ten_loai }}</option>
+                        </template>
                     </select>
 
                     <label class="mb-2 mt-2">Tên Sản Phẩm</label>
@@ -34,8 +35,8 @@
                     </button>
                 </div>
             </div>
-    </div>
-    <div class="col-lg-8 col-md-12">
+        </div>
+        <div class="col-lg-8 col-md-12">
             <div class="card mt-2">
                 <div class="card-header mt-2">
                     <h5>Danh Sách Sản Phẩm</h5>
@@ -47,7 +48,8 @@
                                 <tr>
                                     <th colspan="100%">
                                         <div class="input-group w-100">
-                                            <input v-on:keyup.enter="timKiem()" v-model="search.ten_san_pham" type="text"
+                                            <input v-on:keyup.enter="timKiem()" v-model="search.ten_san_pham"
+                                                type="text"
                                                 class="form-control search-control border border-1 border-secondary"
                                                 placeholder="Search..." />
                                             <span class="position-absolute top-50 search-show translate-middle-y"
@@ -72,12 +74,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <template v-for="(v, k) in list" :key="k">
+                                <template v-for="(v, k) in list" :key="k">
                                     <tr class="align-middle">
-                                        <th class="text-center">{{ k+1 }}</th>
+                                        <th class="text-center">{{ k + 1 }}</th>
                                         <td class="text-center">
-                                            <p v-if="v.id_san_pham ==1">Bánh</p>
-                                            <p v-else>Nước Uống</p>
+                                            {{ v.ten_loai }}
                                         </td>
                                         <td class="text-center align-middle">
                                             {{ v.ten_san_pham }}
@@ -87,7 +88,7 @@
                                         <td>{{ v.gia_ban }}</td>
                                         <td class="text-center"><img :src="v.hinh_anh" class="img-fluid" alt=""></td>
                                         <td class="text-center">
-                                            <button v-on:click="doiTrangThai(v)" v-if="v.tinh_trang==1"
+                                            <button v-on:click="doiTrangThai(v)" v-if="v.tinh_trang == 1"
                                                 class="btn btn-danger" style="width: 100px">
                                                 Tạm Dừng
                                             </button>
@@ -97,28 +98,27 @@
                                             </button>
                                         </td>
                                         <td class="text-center">
-                                            <button class="btn btn-primary me-1"
-                                                style="width: 100px" data-bs-toggle="modal"
-                                                data-bs-target="#updateModal" v-on:click="Object.assign(edit, v)">
+                                            <button class="btn btn-primary me-1" style="width: 100px"
+                                                data-bs-toggle="modal" data-bs-target="#updateModal"
+                                                v-on:click="Object.assign(edit, v)">
                                                 Cập Nhật
                                             </button>
-                                            <button class="btn btn-danger"
-                                                style="width: 100px" data-bs-toggle="modal"
+                                            <button class="btn btn-danger" style="width: 100px" data-bs-toggle="modal"
                                                 data-bs-target="#deleteModal" v-on:click="Object.assign(del, v)">
                                                 Xóa
                                             </button>
                                         </td>
                                     </tr>
-                            </template>
+                                </template>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-   </div>
-   <!-- Modal xoá-->
-   <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    </div>
+    <!-- Modal xoá-->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -165,28 +165,28 @@
                 </div>
                 <div class="modal-body">
                     <div class="card-body">
-                    <label class="mb-2 mt-2">Chọn Loại Sản Phẩm</label>                
-                    <select v-model="create.id_san_pham" class="form-control">
-                        <option value="1">Bánh</option>
-                        <option value="0">Nước uống</option>
-                    </select>
+                        <label class="mb-2 mt-2">Chọn Loại Sản Phẩm</label>
+                        <select v-model="create.id_san_pham" class="form-control">
+                            <option value="1">Bánh</option>
+                            <option value="0">Nước uống</option>
+                        </select>
 
-                    <label class="mb-2 mt-2">Tên Sản Phẩm</label>
-                    <input v-model="edit.ten_san_pham" type="text" class="form-control" />
-                    <label class="mb-2 mt-2">Mô Tả Ngắn</label>
-                    <input v-model="edit.mo_ta_ngan" type="text" class="form-control" />
-                    <label class="mb-2 mt-2">Mô Tả Chi Tiết</label>
-                    <input v-model="edit.mo_ta_chi_tiet" type="text" class="form-control" />
-                    <label class="mb-2 mt-2">Giá Bán</label>
-                    <input v-model="edit.gia_ban" type="text" class="form-control" />
-                    <label class="mb-2 mt-2">Hình Ảnh</label>
-                    <input v-model="edit.hinh_anh" type="text" class="form-control" />
-                    <label class="mb-2 mt-2">Tình Trạng</label>
-                    <select v-model="edit.tinh_trang" class="form-control">
-                        <option value="1">Tạm Dừng</option>
-                        <option value="0">Hiển Thị</option>
-                    </select>
-                </div>
+                        <label class="mb-2 mt-2">Tên Sản Phẩm</label>
+                        <input v-model="edit.ten_san_pham" type="text" class="form-control" />
+                        <label class="mb-2 mt-2">Mô Tả Ngắn</label>
+                        <input v-model="edit.mo_ta_ngan" type="text" class="form-control" />
+                        <label class="mb-2 mt-2">Mô Tả Chi Tiết</label>
+                        <input v-model="edit.mo_ta_chi_tiet" type="text" class="form-control" />
+                        <label class="mb-2 mt-2">Giá Bán</label>
+                        <input v-model="edit.gia_ban" type="text" class="form-control" />
+                        <label class="mb-2 mt-2">Hình Ảnh</label>
+                        <input v-model="edit.hinh_anh" type="text" class="form-control" />
+                        <label class="mb-2 mt-2">Tình Trạng</label>
+                        <select v-model="edit.tinh_trang" class="form-control">
+                            <option value="1">Tạm Dừng</option>
+                            <option value="0">Hiển Thị</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
@@ -206,8 +206,9 @@ import axios from 'axios';
 export default {
     data() {
         return {
-            list:[],
-            search : {
+            list: [],
+            list_loaisp: [],
+            search: {
                 ten_san_pham: "",
             },
             create: {
@@ -227,6 +228,7 @@ export default {
     },
     mounted() {
         this.loadData();
+        this.loadDataloaisp();
     },
     methods: {
         loadData() {
@@ -234,6 +236,13 @@ export default {
                 .get('http://127.0.0.1:8000/api/admin/san-pham/data')
                 .then((res) => {
                     this.list = res.data.data;
+                })
+        },
+        loadDataloaisp() {
+            axios
+                .get('http://127.0.0.1:8000/api/admin/loai-sp/data')
+                .then((res) => {
+                    this.list_loaisp = res.data.data;
                 })
         },
         timKiem() {
@@ -316,6 +325,4 @@ export default {
     },
 }
 </script>
-<style>
-    
-</style>
+<style></style>

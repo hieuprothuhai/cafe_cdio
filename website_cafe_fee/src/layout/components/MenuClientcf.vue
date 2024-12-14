@@ -7,6 +7,7 @@
                     <li class="dropdown">
                         <router-link to="/trang-chu">Menu</router-link>
                         <ul class="dropdown-menu">
+
                             <li><router-link to="/menu/coffee">Coffee</router-link></li>
                             <li><router-link to="/menu/tea">Tea</router-link></li>
                             <li><router-link to="/menu/snacks">Snacks</router-link></li>
@@ -22,6 +23,8 @@
 
 
 <script>
+
+
 export default {
 
 }

@@ -15,15 +15,7 @@
             </div>
             <nav class="navbar">
                 <ul class="navbar-nav">
-                    <!-- Đăng nhập và Đăng ký -->
-                    <!-- <li class="nav-item text-end">
-                <router-link to="/khach-hang/dang-nhap">
-              <a class="btn login-btn me-3" href="#login">Đăng Nhập</a>
-            </router-link>
-            <router-link to="/khach-hang/dang-ky">
-              <a class="btn register-btn" href="#register">Đăng Ký</a>
-            </router-link>
-            </li> -->
+
                     <div class="btn-group">
                         <!-- Button icon 1 -->
                         <div class="dropdown">
@@ -39,7 +31,6 @@
                                 <router-link to="/ho-tro">Hỗ trợ</router-link>
                             </div>
                         </div>
-
                         <!-- Button icon 2 -->
                         <div class="dropdown">
                             <router-link to="/khach-hang/dang-ky">
@@ -451,6 +442,7 @@ button {
 .btn-group {
     display: flex;
     gap: 10px;
+    right: 10px;
 }
 
 .dropdown {
