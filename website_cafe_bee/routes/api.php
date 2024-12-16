@@ -1,6 +1,10 @@
 <?php
 
 use App\Http\Controllers\ChiTietNhapKhoController;
+<<<<<<< HEAD
+=======
+use App\Http\Controllers\DichVuController;
+>>>>>>> b2fd35f16cd8ee614f6bdb70320afffae71644aa
 use App\Http\Controllers\KhachHangController;
 use App\Http\Controllers\KhoController;
 use App\Http\Controllers\LoaiSanPhamController;
@@ -44,24 +48,42 @@ Route::get('/admin/san-pham/dataopen/{id}', [SanPhamController::class, 'dataopen
 Route::get('/admin/san-pham/dataopen', [SanPhamController::class, 'dataList']);
 Route::post('/admin/san-pham/tim-kiem', [SanPhamController::class, 'tim']);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> b2fd35f16cd8ee614f6bdb70320afffae71644aa
 Route::get('/admin/nha-cung-cap/data', [NhaCungCapController::class, 'getData']);
 Route::post('/admin/nha-cung-cap/create', [NhaCungCapController::class, 'store']);
 Route::post('/admin/nha-cung-cap/update', [NhaCungCapController::class, 'update']);
 Route::post('/admin/nha-cung-cap/delete', [NhaCungCapController::class, 'delete']);
 Route::post('/admin/nha-cung-cap/tim-kiem', [NhaCungCapController::class, 'search']);
+<<<<<<< HEAD
 // Route::post('/admin/nha-cung-cap/doi-trang-thai', [NhaCungCapController::class, 'doitrangthai']);
+=======
+Route::post('/admin/nha-cung-cap/doi-trang-thai', [NhaCungCapController::class, 'doitrangthai']);
+>>>>>>> b2fd35f16cd8ee614f6bdb70320afffae71644aa
 
 Route::get('/admin/chitiet-nhapkho/data', [ChiTietNhapKhoController::class, 'getData']);
 Route::post('/admin/chitiet-nhapkho/create', [ChiTietNhapKhoController::class, 'store']);
 Route::post('/admin/chitiet-nhapkho/update', [ChiTietNhapKhoController::class, 'update']);
 Route::post('/admin/chitiet-nhapkho/delete', [ChiTietNhapKhoController::class, 'delete']);
 Route::post('/admin/chitiet-nhapkho/tim-kiem', [ChiTietNhapKhoController::class, 'search']);
+<<<<<<< HEAD
+=======
+Route::post('/admin/chitiet-nhapkho/doi-trang-thai', [ChiTietNhapKhoController::class, 'doitrangthai']);
+
+>>>>>>> b2fd35f16cd8ee614f6bdb70320afffae71644aa
 
 Route::get('/admin/kho/data', [KhoController::class, 'getData']);
 Route::post('/admin/kho/create', [KhoController::class, 'store']);
 Route::post('/admin/kho/update', [KhoController::class, 'update']);
 Route::post('/admin/kho/delete', [KhoController::class, 'delete']);
 Route::post('/admin/kho/tim-kiem', [KhoController::class, 'search']);
+<<<<<<< HEAD
+=======
+Route::post('/admin/kho/doi-trang-thai', [KhoController::class, 'doitrangthai']);
+
+>>>>>>> b2fd35f16cd8ee614f6bdb70320afffae71644aa
 
 Route::get('/admin/phan-quyen/data', [PhanquyenController::class, 'getData']);
 Route::post('/admin/phan-quyen/create', [PhanquyenController::class, 'store']);
@@ -69,6 +91,12 @@ Route::post('/admin/phan-quyen/update', [PhanquyenController::class, 'update']);
 Route::post('/admin/phan-quyen/delete', [PhanquyenController::class, 'delete']);
 
 
+<<<<<<< HEAD
+=======
+Route::post('/admin/dich-vu/getdata', [DichVuController::class, 'getdatatheoloaisp']);
+
+
+>>>>>>> b2fd35f16cd8ee614f6bdb70320afffae71644aa
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

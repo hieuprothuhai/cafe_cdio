@@ -23,9 +23,19 @@ class SanPhamController extends Controller
             'message' => 'Bạn thêm mới  ' . $request->ten_san_pham . '  Thành Công'
         ]);
     }
+<<<<<<< HEAD
     public function getData()
     {
         $data = SanPham::get();
+=======
+    
+    public function getData()
+    {
+        $data = SanPham::leftjoin('loaisanphams', 'loaisanphams.id', 'san_phams.id_san_pham')
+            ->select('san_phams.*', 'loaisanphams.ten_loai')
+            ->get();
+
+>>>>>>> b2fd35f16cd8ee614f6bdb70320afffae71644aa
         return response()->json([
             'data' => $data
         ]);
@@ -60,7 +70,11 @@ class SanPhamController extends Controller
     {
         $sanpham = SanPham::where('id', $request->id)->first();
 
+<<<<<<< HEAD
         if($request->tinh_trang == 0) {
+=======
+        if ($request->tinh_trang == 0) {
+>>>>>>> b2fd35f16cd8ee614f6bdb70320afffae71644aa
             $sanpham->tinh_trang = 1;
             $sanpham->save();
         } else {
@@ -91,8 +105,13 @@ class SanPhamController extends Controller
         $noi_dung = '%' . $request->noi_dung . '%';
 
         $data = SanPham::where('ten_san_pham', 'like', $noi_dung)
+<<<<<<< HEAD
                         ->orwhere('id_san_pham', 'like', $noi_dung)
                         ->get();
+=======
+            ->orwhere('id_san_pham', 'like', $noi_dung)
+            ->get();
+>>>>>>> b2fd35f16cd8ee614f6bdb70320afffae71644aa
 
         return response()->json([
             'data' => $data

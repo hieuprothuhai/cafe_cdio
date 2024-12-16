@@ -95,7 +95,11 @@
                 <template v-for="(v, k) in list" :key="k">
                     <div class="menu-item">
                         <div class="card">
+<<<<<<< HEAD
                             <img :src="v.hinh_anh" alt="menu item" />
+=======
+                            <img :src="v.hinh_anh" style="width: 100%;height: 350px;" alt="menu item" />
+>>>>>>> b2fd35f16cd8ee614f6bdb70320afffae71644aa
                             <h3>{{ v.ten_san_pham }}</h3>
                             <p>{{ v.gia_ban }} VND</p>
                         </div>

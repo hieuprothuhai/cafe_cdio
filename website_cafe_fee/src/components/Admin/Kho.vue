@@ -7,9 +7,24 @@
                 </div>
                 <div class="card-body">
                     <label>Nhà Cung Cấp</label>
+<<<<<<< HEAD
                     <input v-model="create.nha_cung_cap" class="form-control mb-2" type="text">
                     <label>Nhân Viên</label>
                     <input v-model="create.nhan_vien" class="form-control mb-2" type="text">
+=======
+                    <select v-model="create.nha_cung_cap" class="form-control">
+                        <template v-for="(v, k) in list_ncc" :key="k">
+                            <option v-bind:value="v.id">{{ v.ten_nha_cung_cap }}</option>
+                        </template>
+                    </select>
+                    <label>Nhân Viên</label>
+                    <select v-model="create.nhan_vien" class="form-control">
+                        <template v-for="(v, k) in list_nhan_vien" :key="k">
+                            <option v-bind:value="v.id">{{ v.ho_va_ten }}</option>
+                        </template>
+                    </select>
+
+>>>>>>> b2fd35f16cd8ee614f6bdb70320afffae71644aa
                     <label>Mã Nhập Kho</label>
                     <input v-model="create.ma_nhap_kho" class="form-control mb-2" type="text">
                     <label>Tổng Tiền</label>
@@ -64,15 +79,31 @@
                             <tbody>
                                 <tr v-for="(value, k) in list" :key="k">
                                     <td class="text-center align-middle">{{ k + 1 }}</td>
+<<<<<<< HEAD
                                     <td class="text-center align-middle">{{ value.nha_cung_cap }}</td>
                                     <td class="text-center align-middle">{{ value.nhan_vien }}</td>
+=======
+                                    <td class="text-center align-middle">{{ value.ten_nha_cung_cap }}</td>
+                                    <td class="text-center align-middle">{{ value.ho_va_ten }}</td>
+>>>>>>> b2fd35f16cd8ee614f6bdb70320afffae71644aa
                                     <td class="text-center align-middle">{{ value.ma_nhap_kho }}</td>
                                     <td class="text-center align-middle">{{ value.tong_tien }}</td>
                                     <td class="text-center align-middle">{{ value.ghi_chu }}</td>
                                     <td class="text-center align-middle">
+<<<<<<< HEAD
                                         <button v-if="value.tinh_trang == 1" class="btn btn-success me-2">Hoạt
                                             Động</button>
                                         <button v-else class="btn btn-warning">Tạm Dừng</button>
+=======
+                                        <button v-on:click="doiTrangThai(value)" v-if="value.tinh_trang ==1"
+                                                class="btn btn-success" style="width: 100px">
+                                                Hoạt Động
+                                            </button>
+                                            <button v-on:click="doiTrangThai(value)" v-else class="btn btn-warning"
+                                                style="width: 100px">
+                                                Tạm Dừng
+                                            </button>
+>>>>>>> b2fd35f16cd8ee614f6bdb70320afffae71644aa
                                     </td>
                                     <td class="text-center align-middle">
                                         <button v-on:click="Object.assign(edit, value)" type="button"
@@ -173,6 +204,7 @@ export default {
     data() {
         return {
             list: [],
+<<<<<<< HEAD
             create: {
                 'nha_cung_cap': '',
                 'nhan_vien': '',
@@ -181,6 +213,11 @@ export default {
                 'ghi_chu': '',
                 'tinh_trang': '',
             },
+=======
+            list_ncc: [],
+            list_nhan_vien: [],
+            create: {},
+>>>>>>> b2fd35f16cd8ee614f6bdb70320afffae71644aa
             edit: {},
             del: {
                 'nha_cung_cap': '',
@@ -190,6 +227,11 @@ export default {
     },
     mounted() {
         this.loadData();
+<<<<<<< HEAD
+=======
+        this.loadDatanhacungcap();
+        this.loadDatanhanvien();
+>>>>>>> b2fd35f16cd8ee614f6bdb70320afffae71644aa
     },
     methods: {
         loadData() {
@@ -199,13 +241,37 @@ export default {
                     this.list = res.data.data;
                 })
         },
+<<<<<<< HEAD
+=======
+        loadDatanhacungcap() {
+            axios
+                .get('http://127.0.0.1:8000/api/admin/nha-cung-cap/data')
+                .then((res) => {
+                    this.list_ncc = res.data.data;
+                })
+        },
+        loadDatanhanvien() {
+            axios
+                .get('http://127.0.0.1:8000/api/admin/nhan-vien/data')
+                .then((res) => {
+                    this.list_nhan_vien = res.data.data;
+                })
+        },
+>>>>>>> b2fd35f16cd8ee614f6bdb70320afffae71644aa
         themMoi() {
             axios
                 .post('http://127.0.0.1:8000/api/admin/kho/create', this.create)
                 .then((res) => {
                     if (res.data.status) {
                         this.$toast.success(res.data.message);
+<<<<<<< HEAD
                         this.loadData();
+=======
+                        this.create = {}
+                        this.loadData();
+
+
+>>>>>>> b2fd35f16cd8ee614f6bdb70320afffae71644aa
                     }
                 })
                 .catch((res) => {
@@ -261,7 +327,30 @@ export default {
                     });
                 })
         },
+<<<<<<< HEAD
     },
 }
 </script>
 <style></style>
+=======
+        doiTrangThai(value) {
+            axios
+                .post("http://127.0.0.1:8000/api/admin/kho/doi-trang-thai", value)
+                .then((res) => {
+                    if (res.data.status) {
+                        this.loadData();
+                        this.$toast.success(res.data.message);
+                    }
+                })
+                .catch((res) => {
+                    const list = Object.values(res.response.data.errors);
+                    list.forEach((v, i) => {
+                        this.$toast.error(v[0]);
+                    });
+                })
+        },
+    },
+}
+</script>
+<style></style>
+>>>>>>> b2fd35f16cd8ee614f6bdb70320afffae71644aa

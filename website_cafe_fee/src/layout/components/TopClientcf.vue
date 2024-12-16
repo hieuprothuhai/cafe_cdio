@@ -15,6 +15,7 @@
             </div>
             <nav class="navbar">
                 <ul class="navbar-nav">
+<<<<<<< HEAD
                     <!-- Đăng nhập và Đăng ký -->
                     <!-- <li class="nav-item text-end">
                 <router-link to="/khach-hang/dang-nhap">
@@ -24,6 +25,9 @@
               <a class="btn register-btn" href="#register">Đăng Ký</a>
             </router-link>
             </li> -->
+=======
+
+>>>>>>> b2fd35f16cd8ee614f6bdb70320afffae71644aa
                     <div class="btn-group">
                         <!-- Button icon 1 -->
                         <div class="dropdown">
@@ -39,7 +43,10 @@
                                 <router-link to="/ho-tro">Hỗ trợ</router-link>
                             </div>
                         </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> b2fd35f16cd8ee614f6bdb70320afffae71644aa
                         <!-- Button icon 2 -->
                         <div class="dropdown">
                             <router-link to="/khach-hang/dang-ky">
@@ -451,6 +458,10 @@ button {
 .btn-group {
     display: flex;
     gap: 10px;
+<<<<<<< HEAD
+=======
+    right: 10px;
+>>>>>>> b2fd35f16cd8ee614f6bdb70320afffae71644aa
 }
 
 .dropdown {

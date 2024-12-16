@@ -7,9 +7,27 @@ use Illuminate\Http\Request;
 
 class KhoController extends Controller
 {
+<<<<<<< HEAD
     public function getData()
     {
         $data = Kho::get();
+=======
+    // public function getdata()
+    // {
+    //     $data   = thanh_vien::leftjoin('chuc_vus', 'chuc_vus.id', 'thanh_viens.id_chuc_vu')
+    //         ->select('thanh_viens.*', 'chuc_vus.ten_chuc_vu')
+    //         ->get(); // get là ra 1 danh sách
+    //     return response()->json([
+    //         'data'   =>   $data
+    //     ]);
+    // }
+    public function getData()
+    {
+        $data = Kho::leftjoin('nha_cung_caps', 'nha_cung_caps.id', 'khos.nha_cung_cap')
+            ->leftjoin('nhan_viens', 'nhan_viens.id', 'khos.nhan_vien')
+            ->select('khos.*', 'nha_cung_caps.ten_nha_cung_cap', 'nhan_viens.ho_va_ten')
+            ->get();
+>>>>>>> b2fd35f16cd8ee614f6bdb70320afffae71644aa
 
         return response()->json([
             'data' => $data
@@ -67,4 +85,23 @@ class KhoController extends Controller
             'data' => $data
         ]);
     }
+<<<<<<< HEAD
+=======
+    public function doitrangthai(Request $request)
+    {
+        $nha_cung_cap = Kho::where('id', $request->id)->first();
+
+        if($request->tinh_trang == 1) {
+            $nha_cung_cap->tinh_trang = 0;
+            $nha_cung_cap->save();
+        } else {
+            $nha_cung_cap->tinh_trang = 1;
+            $nha_cung_cap->save();
+        }
+        return response()->json([
+            'status'    =>  true,
+            'message'   =>  'Bạn đã cập nhật Nhà cung cấp ' . $request->nha_cung_cap . ' thành công'
+        ]);
+    }
+>>>>>>> b2fd35f16cd8ee614f6bdb70320afffae71644aa
 }
